@@ -1,0 +1,24 @@
+package main
+
+import (
+	"example/receptor/receptor_hop_node_testing_tool/cmd"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+	args := os.Args
+
+	switch {
+	case strings.Contains(args[1], "create-file"):
+		cmd.CreateFile(args)
+	case strings.Contains(args[1], "hash-file"):
+		cmd.HashFile(args)
+	case strings.Contains(args[1], "send-file"):
+		cmd.SendFile(args)
+	default:
+		helpFile, _ := os.ReadFile("./help/general_help.txt")
+		fmt.Printf("%+s\n", helpFile)
+	}
+}

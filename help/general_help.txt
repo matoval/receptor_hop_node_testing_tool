@@ -1,0 +1,14 @@
+Usage: ./main COMMAND [OPTIONS]
+
+Options:
+  --fileName TEXT               File name and/or path where new file will be
+                                created or currently exists.
+  --fileSize TEXT               File size used to creating a new file.
+  --fileMode TEXT               Mode file permissions are set to when
+                                creating a new file.
+  --help                        Show this message and exit.
+
+Commands:
+  create-file    Create a file with ramdom data at a set size.
+  hash-file      Returns the hash of a file.
+  send-file      Send file to a receptor node.

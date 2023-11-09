@@ -1,0 +1,9 @@
+Usage: ./main create-file [OPTIONS]
+
+Options:
+  --fileName TEXT               File name and/or path where new file will be
+                                created or currently exists.[default: test]
+  --fileSize TEXT               File size used to creating a new file.[default: 100]
+  --fileMode TEXT               Mode file permissions are set to when
+                                creating a new file.[default: 0666]
+  --help                        Show this message and exit.

@@ -1,0 +1,10 @@
+Usage: ./main send-file [OPTIONS]
+
+Options:
+  --socketPath TEXT             Path to socket used to connect to the
+                                Receptor node.[required]
+  --nodeId TEXT                 Node ID for the node to send file to.
+                                [required]
+  --fileName TEXT               File name and/or path where new file will be
+                                created or currently exists.[required]
+  --help                        Show this message and exit.

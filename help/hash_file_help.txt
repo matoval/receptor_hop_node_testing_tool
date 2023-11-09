@@ -1,0 +1,6 @@
+Usage: ./main hash-file [OPTIONS]
+
+Options:
+  --fileName TEXT               File name and/or path where new file will be
+                                created or currently exists.[required]
+  --help                        Show this message and exit.
