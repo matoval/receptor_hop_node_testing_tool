@@ -7,4 +7,6 @@ Options:
                                 [required]
   --fileName TEXT               File name and/or path where new file will be
                                 created or currently exists.[required]
+  --tlsClient TEXT              TLS client used when submitting work to a remote
+                                node.[required]
   --help                        Show this message and exit.
