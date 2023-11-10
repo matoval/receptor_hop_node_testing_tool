@@ -21,5 +21,5 @@ func HashFile(args []string) {
 
 	fileData, _ := os.ReadFile(fileName)
 	hashData := []byte(fileData)
-	fmt.Printf("Hash: %x", md5.Sum(hashData))
+	fmt.Printf("Hash: %x\n", md5.Sum(hashData))
 }

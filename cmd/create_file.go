@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"crypto/rand"
 	"fmt"
 	"io/fs"
 	"os"
@@ -27,6 +28,7 @@ func CreateFile(args []string) {
 	}
 
 	bigBuff := make([]byte, fileSize)
+	rand.Read(bigBuff)
 	err := os.WriteFile(fileName, bigBuff, fs.FileMode(fileMode))
 	if err != nil {
 		fmt.Printf("CreateFile returned error: %v", err)
