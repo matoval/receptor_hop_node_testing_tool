@@ -25,7 +25,7 @@ func SendFile(args []string) {
 		}
 	}
 
-	cmd := exec.Command("receptorctl", fmt.Sprintf("--socket %v work submit echopayload --node %v --payload %v", socketPath, nodeId, fileName))
+	cmd := exec.Command("receptorctl", "--socket", socketPath, "work", "submit", "echopayload", "--node", nodeId, "--payload", fileName)
 
 	fmt.Printf("CMD: %v\n", cmd)
 
