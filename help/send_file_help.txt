@@ -1,12 +1,11 @@
 Usage: ./main send-file [OPTIONS]
 
 Options:
-  --socketPath TEXT             Path to socket used to connect to the
+  --socket TEXT                 Path to socket used to connect to the
                                 Receptor node.[required]
-  --nodeId TEXT                 Node ID for the node to send file to.
+  --node TEXT                   Node ID for the node to send file to.
                                 [required]
-  --fileName TEXT               File name and/or path where new file will be
-                                created or currently exists.[required]
+  --payload TEXT                File containing unit of work data.[required]
   --tlsClient TEXT              TLS client used when submitting work to a remote
                                 node.[required]
   --help                        Show this message and exit.

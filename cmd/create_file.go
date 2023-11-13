@@ -24,6 +24,7 @@ func CreateFile(args []string) {
 		case "--help":
 			helpFile, _ := os.ReadFile("./help/create_file_help.txt")
 			fmt.Printf("%+s\n", helpFile)
+			return
 		}
 	}
 

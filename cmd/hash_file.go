@@ -16,10 +16,15 @@ func HashFile(args []string) {
 		case "--help":
 			helpFile, _ := os.ReadFile("./help/hash_file_help.txt")
 			fmt.Printf("%+s\n", helpFile)
+			return
 		}
 	}
 
-	fileData, _ := os.ReadFile(fileName)
+	fileData, err := os.ReadFile(fileName)
+	if err != nil {
+		fmt.Printf("error reading file %v, error: %v\n", fileName, err)
+		return
+	}
 	hashData := []byte(fileData)
 	fmt.Printf("Hash: %x\n", md5.Sum(hashData))
 }
