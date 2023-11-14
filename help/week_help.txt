@@ -1,0 +1,8 @@
+Usage: ./main week-test [OPTIONS]
+
+Options:
+  --node TEXT                   Node ID for the node to send file to.
+                                [required]
+
+NOTE:
+    This test will run for 7 days. On the hour, every hour, this help file will be sent to the node id provided.

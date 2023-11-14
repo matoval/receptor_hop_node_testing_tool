@@ -17,6 +17,8 @@ func main() {
 		cmd.HashFile(args)
 	case strings.Contains(args[1], "send-file"):
 		cmd.SendFile(args)
+	case strings.Contains(args[1], "week-test"):
+		cmd.TimeTest(args)
 	default:
 		helpFile, _ := os.ReadFile("./help/general_help.txt")
 		fmt.Printf("%+s\n", helpFile)

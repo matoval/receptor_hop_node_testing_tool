@@ -1,0 +1,21 @@
+package cmd
+
+import (
+	"fmt"
+	"os/exec"
+)
+
+func FileSender(socketPath string, nodeId string, fileName string, tlsCert string, tlsKey string) {
+
+	cmd := exec.Command("receptorctl", "--cert", tlsCert, "--key", tlsKey, "--socket", socketPath, "work", "submit", "echopayload", "--node", nodeId, "--payload", fileName)
+
+	fmt.Printf("CMD: %v\n", cmd)
+
+	stdout, err := cmd.Output()
+	if err != nil {
+		fmt.Printf("Error: %v", err.Error())
+		return
+	}
+
+	fmt.Println(string(stdout))
+}
