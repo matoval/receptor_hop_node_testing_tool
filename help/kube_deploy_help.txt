@@ -1,0 +1,8 @@
+Usage: ./main kube-deploy [OPTIONS]
+
+Options:
+  --socket TEXT                 Path to socket used to connect to the
+                                Receptor node.[required]
+  --cert TEXT                   Client certificate filename.[required]
+  --key TEXT                    Client private key filename.[required]
+  --help                        Show this message and exit.

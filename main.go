@@ -19,6 +19,8 @@ func main() {
 		cmd.SendFile(args)
 	case strings.Contains(args[1], "week-test"):
 		cmd.TimeTest(args)
+	case strings.Contains(args[1], "kube-deploy"):
+		cmd.KubeDeploy(args)
 	default:
 		helpFile, _ := os.ReadFile("./help/general_help.txt")
 		fmt.Printf("%+s\n", helpFile)

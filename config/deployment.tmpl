@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .DeploymentName }}
+  namespace: {{ .Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .DeploymentName }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .DeploymentName }}
+    spec:
+      containers:
+      - args:
+        - /bin/sh
+        - -c
+        - |
+          internal_hostname={{ .DeploymentName }}
+
+
+          external_hostname={{ .ExternalHostName }}
+          external_ipaddress={{ .ExternalIPAddress }}
+
+          receptor --cert-makereq bits=2048 commonname=$internal_hostname dnsname=$internal_hostname dnsname=$external_hostname nodeid=$internal_hostname ipaddress=$external_ipaddress outreq=/etc/receptor/tls/receptor.req outkey=/etc/receptor/tls/receptor.key
+          receptor --cert-signreq req=/etc/receptor/tls/receptor.req cacert=/etc/receptor/tls/ca/mesh-CA.crt cakey=/etc/receptor/tls/ca/mesh-CA.key outcert=/etc/receptor/tls/receptor.crt verify=yes
+          exec receptor --config /etc/receptor/receptor.conf
+        image: quay.io/ansible/receptor:devel
+        imagePullPolicy: Always
+        name: control-deployment-mesh-ingress
+        volumeMounts:
+          - name: {{ .ConfigMap }}
+            mountPath: /etc/receptor/receptor.conf
+            subPath: receptor.conf
+          - name: control-deployment-receptor-ca
+            mountPath: /etc/receptor/tls/ca/mesh-CA.crt
+            readOnly: true
+            subPath: tls.crt
+          - name: control-deployment-receptor-ca
+            mountPath: /etc/receptor/tls/ca/mesh-CA.key
+            readOnly: true
+            subPath: tls.key
+          - name: control-deployment-receptor-tls
+            mountPath: /etc/receptor/tls/
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccount: receptor-hop-node-service-account
+      volumes:
+        - name: control-deployment-receptor-tls
+          emptyDir: {}
+        - name: control-deployment-receptor-ca
+          secret:
+            secretName: deployment-name-receptor-ca
+            defaultMode: 420
+        - name: {{ .ConfigMap }}
+          configMap:
+            name: {{ .ConfigMap }}
+            items:
+              - key: receptor_conf
+                path: receptor.conf
+            defaultMode: 420
