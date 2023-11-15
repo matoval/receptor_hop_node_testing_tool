@@ -24,7 +24,7 @@ func KubeLauncher(socketPath string, tlsCert string, tlsKey string) {
 		ConfigMap:         "hop-node-deployment-receptor-config",
 	}
 
-	tmpl, err := template.ParseFiles("config/deployment.tmpl")
+	tmpl, err := template.ParseFiles("template/deployment.tmpl")
 	if err != nil {
 		fmt.Printf("error templating: %v", err)
 	}
