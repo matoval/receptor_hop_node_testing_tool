@@ -1,0 +1,9 @@
+Usage: ./main onehundred [OPTIONS]
+
+Options:
+  --number INT                  Number of Node ID's in the mesh.
+                                [required]
+
+
+NOTE:
+    This test expects node ID's to be in the format exi-nodeX where X represents a positive integer 
