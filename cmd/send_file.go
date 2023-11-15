@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"os/exec"
 )
 
 func SendFile(args []string) {
@@ -31,17 +30,5 @@ func SendFile(args []string) {
 			return
 		}
 	}
-	//receptorctl --cert /etc/receptor/tls/receptor.crt --key /etc/receptor/tls/receptor.key --socket /tmp/control.sock work submit echopayload -p /tmp/test2 --node test1
-
-	cmd := exec.Command("receptorctl", "--cert", tlsCert, "--key", tlsKey, "--socket", socketPath, "work", "submit", "echopayload", "--node", nodeId, "--payload", fileName)
-
-	fmt.Printf("CMD: %v\n", cmd)
-
-	stdout, err := cmd.Output()
-	if err != nil {
-		fmt.Printf("Error: %v", err.Error())
-		return
-	}
-
-	fmt.Println(string(stdout))
+	FileSender(socketPath, nodeId, fileName, tlsCert, tlsKey)
 }

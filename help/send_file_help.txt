@@ -6,6 +6,6 @@ Options:
   --node TEXT                   Node ID for the node to send file to.
                                 [required]
   --payload TEXT                File containing unit of work data.[required]
-  --tlsClient TEXT              TLS client used when submitting work to a remote
-                                node.[required]
+  --cert TEXT                   Client certificate filename.[required]
+  --key TEXT                    Client private key filename.[required]
   --help                        Show this message and exit.
