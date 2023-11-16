@@ -23,6 +23,8 @@ func main() {
 		cmd.KubeDeploy(args)
 	case strings.Contains(args[1], "onehundred"):
 		cmd.OneHundredTest(args)
+	case strings.Contains(args[1], "scalepayloads"):
+		cmd.ScalePayloads(args)
 	default:
 		helpFile, _ := os.ReadFile("./help/general_help.txt")
 		fmt.Printf("%+s\n", helpFile)

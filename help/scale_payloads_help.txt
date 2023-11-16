@@ -1,0 +1,9 @@
+Usage: ./main scalepayloads [OPTIONS]
+
+Options:
+  --node TEXT                   Node ID for the node to send file to.
+                                [required]
+  --timeout INT                 Timeout in minutes for the messages to be sent [default is 5]
+
+NOTE:
+    This test will print the last number of attempted messages to be sent, so the last number of successful messages is the result divided by 2
