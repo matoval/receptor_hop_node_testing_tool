@@ -23,16 +23,16 @@ func OneHundredTest(args []string) {
 	if err != nil {
 		fmt.Println("NUMBER NOT AN INT")
 		fmt.Printf("%+s\n", helpFile)
+		return
 	}
-
-	go oneHundredTestRuns(num)
+	oneHundredTestRuns(num)
 
 }
 
 func oneHundredTestRuns(num int) {
 	for i := 0; i < num; i++ {
 		for j := 0; j < 10; j++ {
-			nodeID := fmt.Sprintf("exi-node%d", i)
+			nodeID := fmt.Sprintf("execution-deployment-%d", i)
 			sendMessage(nodeID)
 		}
 	}

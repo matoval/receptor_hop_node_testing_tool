@@ -43,9 +43,8 @@ func runWithHourlyMessages(nodeId string) {
 
 func sendMessage(nodeId string) {
 	socketPath := "/tmp/control.sock"
-	fileName := "./help/week_help.txt"
 	tlsCert := "/etc/receptor/tls/receptor.crt"
 	tlsKey := "/etc/receptor/tls/receptor.key"
 
-	FileSender(socketPath, nodeId, fileName, tlsCert, tlsKey)
+	MessageSender(socketPath, nodeId, tlsCert, tlsKey)
 }

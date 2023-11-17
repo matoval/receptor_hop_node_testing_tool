@@ -32,18 +32,18 @@ func ScalePayloads(args []string) {
 			return
 		}
 	}
-	go increasePayloads(nodeId, timeout)
+	increasePayloads(nodeId, timeout)
 }
 
 func increasePayloads(nodeId string, timeout time.Duration) {
 	var wg sync.WaitGroup
 	keepAlive := true
+	numberOfRuns := 1
 
 	for keepAlive {
-		numberOfRuns := 1
 		for j := 0; j < numberOfRuns; j++ {
 			wg.Add(1)
-			go sendMessageScale(nodeId, &wg)
+			go sendMessageScale(nodeId, numberOfRuns, &wg)
 		}
 
 		// Wait for replies or timeout
@@ -56,15 +56,16 @@ func increasePayloads(nodeId string, timeout time.Duration) {
 
 }
 
-func sendMessageScale(nodeID string, wg *sync.WaitGroup) {
+func sendMessageScale(nodeID string, numberOfRuns int, wg *sync.WaitGroup) {
 	defer wg.Done()
 	socketPath := "/tmp/control.sock"
-	fileName := "./help/scale_payloads_help.txt"
 	tlsCert := "/etc/receptor/tls/receptor.crt"
 	tlsKey := "/etc/receptor/tls/receptor.key"
 
 	//sent with the -f option to get the returned string
-	cmd := exec.Command("receptorctl", "--cert", tlsCert, "--key", tlsKey, "--socket", socketPath, "work", "submit", "echopayload", "--node", nodeID, "--payload", fileName, "-f")
+	cmd := exec.Command("receptorctl", "--cert", tlsCert, "--key", tlsKey, "--socket", socketPath, "work", "submit", "cat", "--node", nodeID, "-l", strconv.FormatInt(int64(numberOfRuns), 10), "-f")
+
+	fmt.Printf("CMD: %v\n", cmd)
 
 	stdout, err := cmd.Output()
 	if err != nil {
